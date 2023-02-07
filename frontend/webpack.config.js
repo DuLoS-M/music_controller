@@ -2,9 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./frontend/src/index.js",
+  entry: "./src/index.js",
   output: {
-    path: path.resolve(__dirname, "./frontend/static/frontend"),
+    path: path.resolve(__dirname, "./static/frontend"),
     filename: "[name].js",
   },
   module: {
@@ -25,5 +25,12 @@ module.exports = {
     new webpack.DefinePlugin({
         'process.env.NODE_ENV' : JSON.stringify('development')
     })
-]
-};
+  ],
+  externals: {
+    'react': 'react',
+    'react-dom': 'react-dom',
+    'react-router-dom': 'react-router-dom',
+    'react-router': 'react-router'
+  },
+
+  };

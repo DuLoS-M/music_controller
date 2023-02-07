@@ -2,9 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./frontend/src/index.js",
   output: {
-    path: path.resolve(__dirname, "./static/frontend"),
+    path: path.resolve(__dirname, "./frontend/static/frontend"),
     filename: "[name].js",
   },
   module: {
@@ -23,10 +23,16 @@ module.exports = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      "process.env": {
-        // This has effect on the react lib size
-        NODE_ENV: JSON.stringify("production"),
-      },
-    }),
-  ],
+        'process.env.NODE_ENV' : JSON.stringify('development')
+    })
+],
+externals: {
+  'react': 'React',
+  'react-dom': 'ReactDOM'
+},
+alias: {
+  react: path.resolve('./node_modules/react')
+}
+
+
 };
